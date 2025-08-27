@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 
     const reply = completion.choices[0].message.content;
 
-    // TODO: aquí luego conectamos con Google Sheets
+    // TODO: aquí luego conectamos con Google Sheets, pero que se vea
 
     res.status(200).json({ reply });
   } catch (err) {
