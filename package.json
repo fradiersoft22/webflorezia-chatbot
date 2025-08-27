@@ -1,8 +1,7 @@
 {
   "name": "webflorezia-chatbot",
   "version": "1.0.0",
-  "type": "module",
-  "dependencies": {
-    "openai": "^4.0.0"
+  "scripts": {
+    "start": "node index.js"
   }
 }
