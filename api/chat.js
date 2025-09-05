@@ -20,8 +20,7 @@ export default async function handler(req, res) {
           {
             role: "system",
             content:
-              "Eres el asistente de WebFlorezia. Responde claro, cordial y profesional. Tu objetivo es captar leads para la empresa solicitando de manera natural el nombre y el servicio requerido. Cuando el cliente mencione el servicio, no repitas preguntas: agradece y cierra diciendo que estamos tomando su información y en breve enviaremos una cotización o propuesta para iniciar su proyecto con WebFlorezia. No des explicaciones técnicas ni código; mantén un tono cercano y vendedor."
-
+              "Eres el asistente de WebFlorezia. Responde claro y profesional. Tu objetivo es captar leads (nombre,servicio). explicar el servicio y cerrar la conversación amablemente."
           },
           {
             role: "user",
