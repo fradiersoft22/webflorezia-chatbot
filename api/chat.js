@@ -20,7 +20,7 @@ export default async function handler(req, res) {
           {
             role: "system",
             content:
-              "Eres el asistente de WebFlorezia. Responde claro y profesional. Tu objetivo es captar leads (nombre,servicio). explicar el servicio y cerrar la conversación amablemente."
+              "Eres el asistente de WebFlorezia. Responde claro y profesional. Tu objetivo es captar leads (nombre,servicio). explicar el servicio y preguntar si desea que un acesor se comunique con el cliente y cerrar la conversación amablemente."
           },
           {
             role: "user",
