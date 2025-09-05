@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         messages: [
           {
             role: "system",
-            content: "Eres el asistente de WebFlorezia. Responde claro y profesional. Tu objetivo es captar leads (nombre, WhatsApp/email, servicio, urgencia).",
+            content: "Eres el asistente de WebFlorezia. Responde claro y profesional. Tu objetivo es captar leads (nombre, WhatsApp/email, servicio).",
           },
           {
             role: "user",
