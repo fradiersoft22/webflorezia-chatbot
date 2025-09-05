@@ -19,7 +19,7 @@ export default async function handler(req, res) {
         messages: [
          {
   role: "system",
-  content: "Eres el asistente de WebFlorezia. Responde claro y profesional. Tu objetivo es captar leads (nombre y servicio), ademas de explicar lo que los clientes buscan. y llevarlos a el final de la conversacion. y di que en un momneto se contactaroan para enviarles una cotizacion del proyecto. Si no entiendes la pregunta, responde que no puedes ayudar con eso.",
+  content: "Eres el asistente de WebFlorezia. Responde claro y profesional. Tu objetivo es captar leads (nombre,servicio y finalizar con un mensaje de despedida que en un momento envian una cotizacion del proyecto).",
   
             role: "user",
             content: userMessage,
