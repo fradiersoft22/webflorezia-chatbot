@@ -1,45 +1,45 @@
-console.log("✅ Widget cargado desde Vercel");
+const chatContainer = document.getElementById("chat-widget");
+chatContainer.innerHTML = `
+  <div style="border:1px solid #ccc; padding:10px; width:300px; font-family: Arial, sans-serif;">
+    <div id="messages" style="height:200px; overflow-y:auto; border:1px solid #ddd; margin-bottom:10px; padding:5px;"></div>
+    <input id="userInput" type="text" placeholder="Escribe tu mensaje..." style="width:75%; padding:5px;">
+    <button id="sendBtn" style="width:20%; padding:5px;">Enviar</button>
+  </div>
+`;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("chat-widget");
+const messagesDiv = document.getElementById("messages");
+const input = document.getElementById("userInput");
+const sendBtn = document.getElementById("sendBtn");
 
-  if (!container) {
-    console.error("❌ No encontré el contenedor #chat-widget");
-    return;
+function addMessage(sender, text) {
+  const msg = document.createElement("p");
+  msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
+  messagesDiv.appendChild(msg);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+sendBtn.addEventListener("click", async () => {
+  const userMessage = input.value.trim();
+  if (!userMessage) return;
+
+  addMessage("Tú", userMessage);
+  input.value = "";
+
+  try {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userMessage }),
+    });
+
+    const data = await res.json();
+
+    if (data.reply) {
+      addMessage("WebFlorezia Bot", data.reply);
+    } else {
+      addMessage("Error", "No hubo respuesta del bot.");
+    }
+  } catch (err) {
+    addMessage("Error", "No se pudo conectar con el servidor.");
   }
-
-  container.innerHTML = `
-    <div style="
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 300px;
-      height: 400px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      background: white;
-      display: flex;
-      flex-direction: column;
-    ">
-      <div style="background:#333;color:white;padding:10px;border-radius:10px 10px 0 0;">
-        Chat WebFlorezia
-      </div>
-      <div id="chat-messages" style="flex:1; padding:10px; overflow-y:auto; font-size:14px;"></div>
-      <div style="display:flex; border-top:1px solid #ccc;">
-        <input id="chat-input" type="text" placeholder="Escribe..." style="flex:1; border:none; padding:10px;"/>
-        <button id="chat-send" style="padding:10px; background:#333; color:white; border:none;">➤</button>
-      </div>
-    </div>
-  `;
-
-  const input = document.getElementById("chat-input");
-  const send = document.getElementById("chat-send");
-  const messages = document.getElementById("chat-messages");
-
-  send.addEventListener("click", () => {
-    const text = input.value.trim();
-    if (!text) return;
-    messages.innerHTML += `<div><b>Tú:</b> ${text}</div>`;
-    input.value = "";
-  });
 });

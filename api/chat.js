@@ -2,7 +2,7 @@
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // la guardas en Vercel > Settings > Environment Variables
+  apiKey: process.env.OPENAI_API_KEY, // en Vercel > Settings > Environment Variables
 });
 
 export default async function handler(req, res) {
@@ -14,13 +14,13 @@ export default async function handler(req, res) {
     }
 
     try {
-      // Llamada al modelo
       const completion = await openai.chat.completions.create({
-        model: "gpt-4o-mini", // rápido y barato
+        model: "gpt-4o-mini",
         messages: [
           {
             role: "system",
-            content: "Eres el asistente de WebFlorezia. Responde claro y profesional. Tu objetivo es captar leads (nombre, WhatsApp/email, servicio).",
+            content:
+              "Eres el asistente de WebFlorezia. Responde claro y profesional. Tu objetivo es captar leads (nombre, WhatsApp/email, servicio).",
           },
           {
             role: "user",
@@ -31,7 +31,6 @@ export default async function handler(req, res) {
 
       const reply = completion.choices[0].message.content;
 
-      // Respuesta al frontend
       return res.status(200).json({
         reply,
         session: sessionId || null,
