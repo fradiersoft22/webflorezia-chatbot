@@ -4,14 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebFlorezia Chatbot</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <h1>WebFlorezia Chatbot</h1>
+  <div class="chat-container">
+    <header class="chat-header">
+      <h1>💬 WebFlorezia Chatbot</h1>
+      <p>Tu asistente inteligente</p>
+    </header>
 
-  <!-- Contenedor del widget -->
-  <div id="chat-widget"></div>
+    <div id="chat-box" class="chat-box"></div>
 
-  <!-- Cargar el script del widget -->
+    <div class="chat-input-container">
+      <input id="user-input" type="text" placeholder="Escribe tu mensaje..." />
+      <button id="send-btn">Enviar</button>
+    </div>
+  </div>
+
   <script src="./widget.js" defer></script>
 </body>
 </html>
